@@ -22,7 +22,7 @@ enum {
     EMPTY_LINE
 };
 
-const char * instructions[14] = {
+const char * instructions[15] = {
     "ADD",  // 0001
     "AND",  // 1010
     "BR",   // 0000
@@ -37,6 +37,7 @@ const char * instructions[14] = {
     "STW",  // 0111
     "TRAP", // 1111
     "XOR",  // 1001
+    "NOP"   // No-op
 };
 
 

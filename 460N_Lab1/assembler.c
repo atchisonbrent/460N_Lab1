@@ -31,22 +31,29 @@ typedef struct {
 } TableEntry;
 TableEntry symbolTable[MAX_SYMBOLS];
 
-const char * instructions[15] = {
-    "ADD",  // 0001
-    "AND",  // 1010
-    "BR",   // 0000
-    "JMP",  // 1100
-    "JSR",  // 0100
-    "LDB",  // 0010
-    "LDW",  // 0110
-    "LEA",  // 1110
-    "RTI",  // 1000
-    "SHF",  // 1101
-    "STB",  // 0011
-    "STW",  // 0111
-    "TRAP", // 1111
-    "XOR",  // 1001
-    "NOP"   // No-op
+const char * instructions[22] = {
+    "add",      // 0001
+    "and",      // 1010
+    "br",       // 0000
+    "brn",      // 0000
+    "brz",      // 0000
+    "brp",      // 0000
+    "brnz",     // 0000
+    "brnp",     // 0000
+    "brzp",     // 0000
+    "brnzp",    // 0000
+    "jmp",      // 1100
+    "jsr",      // 0100
+    "ldb",      // 0010
+    "ldw",      // 0110
+    "lea",      // 1110
+    "rti",      // 1000
+    "shf",      // 1101
+    "stb",      // 0011
+    "stw",      // 0111
+    "trap",     // 1111
+    "xor",      // 1001
+    "nop"       // No-op
 };
 
 

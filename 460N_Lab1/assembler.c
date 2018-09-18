@@ -22,7 +22,7 @@ enum {
     EMPTY_LINE
 };
 
-const char * opcodes[14] = {
+const char * instructions[14] = {
     "ADD",  // 0001
     "AND",  // 1010
     "BR",   // 0000

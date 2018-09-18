@@ -231,5 +231,21 @@ int readAndParse(FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
 
 /* Main Method */
 int main(int argc, char* argv[]) {
-    /* Do Something */
+    
+    // TODO Open Assembly File
+    
+    
+    // TODO Parse Command Line Arguments
+    
+    
+    // TODO Pass 1: Fill out symbol table
+    
+    
+    // TODO Pass 2: Parse and convert instructions to machine code
+    
+    
+    // TODO Write Output File
+    
+    
+    return 0;
 }

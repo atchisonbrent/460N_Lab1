@@ -22,6 +22,24 @@ enum {
     EMPTY_LINE
 };
 
+const char * opcodes[14] = {
+    "ADD",  // 0001
+    "AND",  // 1010
+    "BR",   // 0000
+    "JMP",  // 1100
+    "JSR",  // 0100
+    "LDB",  // 0010
+    "LDW",  // 0110
+    "LEA",  // 1110
+    "RTI",  // 1000
+    "SHF",  // 1101
+    "STB",  // 0011
+    "STW",  // 0111
+    "TRAP", // 1111
+    "XOR",  // 1001
+};
+
+
 /* Parse Command Line Arguments */
 int parse_args(int argc, char* argv[]) {
     
@@ -121,13 +139,21 @@ int toNum(char* pStr) {
 }
 
 
+/* Check if Valid Opcode */
+int isOpcode(char* op) {
+    
+    return 0;
+}
+
+
 /*
  * Read and Parse a Line of Assembly File
  * Note: MAX_LINE_LENGTH, OK, EMPTY_LINE, and DONE are defined values
  */
-int readAndParse( FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
+int readAndParse(FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
                  char ** pArg1, char ** pArg2, char ** pArg3, char ** pArg4) {
-    char * lRet, * lPtr;
+    
+    char * lPtr;
     int i;
     if( !fgets( pLine, MAX_LINE_LENGTH, pInfile ) )
         return( DONE );
@@ -140,16 +166,14 @@ int readAndParse( FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
     /* ignore the comments */
     lPtr = pLine;
     
-    while( *lPtr != ';' && *lPtr != '\0' &&
-          *lPtr != '\n' )
+    while( *lPtr != ';' && *lPtr != '\0' && *lPtr != '\n' )
         lPtr++;
     
     *lPtr = '\0';
     if( !(lPtr = strtok( pLine, "\t\n ," ) ) )
         return( EMPTY_LINE );
     
-    if( isOpcode( lPtr ) == -1 && lPtr[0] != '.' ) /* found a label */
-    {
+    if( isOpcode( lPtr ) == -1 && lPtr[0] != '.' ) {    /* Found a label */
         *pLabel = lPtr;
         if( !( lPtr = strtok( NULL, "\t\n ," ) ) ) return( OK );
     }
@@ -163,6 +187,7 @@ int readAndParse( FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
     if( !( lPtr = strtok( NULL, "\t\n ," ) ) ) return( OK );
     
     *pArg2 = lPtr;
+    
     if( !( lPtr = strtok( NULL, "\t\n ," ) ) ) return( OK );
     
     *pArg3 = lPtr;
@@ -175,8 +200,7 @@ int readAndParse( FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
 }
 
 /* Example Usage of Read and Parse */
-//func()
-//{
+//func() {
 //    char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1,
 //    *lArg2, *lArg3, *lArg4;
 //
@@ -186,12 +210,10 @@ int readAndParse( FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
 //
 //    lInfile = fopen( "data.in", "r" );    /* open the input file */
 //
-//    do
-//    {
+//    do {
 //        lRet = readAndParse( lInfile, lLine, &lLabel,
 //                            &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4 );
-//        if( lRet != DONE && lRet != EMPTY_LINE )
-//        {
+//        if( lRet != DONE && lRet != EMPTY_LINE ) {
 //            ...
 //        }
 //    } while( lRet != DONE );

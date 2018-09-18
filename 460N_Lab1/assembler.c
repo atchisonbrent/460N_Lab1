@@ -12,6 +12,8 @@
 #include <limits.h> /* Library for definitions of common variable type characteristics */
 
 #define MAX_LINE_LENGTH 255
+#define MAX_LABEL_LEN 20
+#define MAX_SYMBOLS 255
 
 FILE* infile = NULL;
 FILE* outfile = NULL;
@@ -21,6 +23,13 @@ enum {
     OK,
     EMPTY_LINE
 };
+
+/* Create Symbol Table */
+typedef struct {
+    int address;
+    char label[MAX_LABEL_LEN + 1];
+} TableEntry;
+TableEntry symbolTable[MAX_SYMBOLS];
 
 const char * instructions[15] = {
     "ADD",  // 0001

@@ -31,8 +31,8 @@ typedef struct {
 } TableEntry;
 TableEntry symbolTable[MAX_SYMBOLS];
 
-int num_ops = 27;
-const char * instructions[27] = {
+int num_ops = 28;
+const char * instructions[28] = {
     "add",      // 0001
     "and",      // 1010
     "br",       // 0000
@@ -336,6 +336,7 @@ int main(int argc, char* argv[]) {
 			}
 			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
             
+            /* Check if Invalid Opcode */
             if (*lLabel != '\0' && isOpcode(lOpcode) == -1 && lOpcode[0] != '.') { exit(2); }
 
 			/* If valid opcode, produce binary */

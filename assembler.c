@@ -2,7 +2,7 @@
  Name 1: Brent Atchison
  Name 2: Kyle Garza
  UTEID 1: bma862
- UTEID 2: k
+ UTEID 2: kcg568
 */
 
 #include <stdio.h>  /* standard input/output library */
@@ -24,14 +24,15 @@ enum {
     EMPTY_LINE
 };
 
-/* Create Symbol Table */
+/* Symbol Table Struct */
 typedef struct {
     int address;
-    char label[MAX_LABEL_LEN + 1];
+    char* label;
 } TableEntry;
 TableEntry symbolTable[MAX_SYMBOLS];
 
-const char * instructions[22] = {
+int num_ops = 23;
+const char * instructions[23] = {
     "add",      // 0001
     "and",      // 1010
     "br",       // 0000
@@ -53,27 +54,9 @@ const char * instructions[22] = {
     "stw",      // 0111
     "trap",     // 1111
     "xor",      // 1001
-    "nop"       // No-op
+    "nop",      // No-op
+	"halt"		// Trap x25
 };
-
-
-/* Parse Command Line Arguments */
-int parse_args(int argc, char* argv[]) {
-    
-    char *prgName   = NULL;
-    char *iFileName = NULL;
-    char *oFileName = NULL;
-    
-    prgName   = argv[0];
-    iFileName = argv[1];
-    oFileName = argv[2];
-    
-    printf("program name = '%s'\n", prgName);
-    printf("input file name = '%s'\n", iFileName);
-    printf("output file name = '%s'\n", oFileName);
-    
-    return 0;
-}
 
 
 /* File Handler */
@@ -158,8 +141,9 @@ int toNum(char* pStr) {
 
 /* Check if Valid Opcode */
 int isOpcode(char* op) {
-    
-    return 0;
+	for (int i = 0; i < num_ops; i++)
+		if (strcmp(op, instructions[i]) == 0) { return 0; }
+    return -1;
 }
 
 
@@ -248,14 +232,45 @@ int readAndParse(FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
 /* Main Method */
 int main(int argc, char* argv[]) {
     
-    // TODO Open Assembly File
+    /* Parse Command Line Arguments */
+	char * prgName = NULL;
+	char * iFileName = NULL;
+	char * oFileName = NULL;
+
+	prgName = argv[0];
+	iFileName = argv[1];
+	oFileName = argv[2];
+
+	printf("program name = '%s'\n", prgName);
+	printf("input file name = '%s'\n", iFileName);
+	printf("output file name = '%s'\n", oFileName);
+
+    /* Open Assembly File */
+    FILE * lInfile;
+    lInfile = fopen(iFileName, "r");
     
-    
-    // TODO Parse Command Line Arguments
-    
-    
-    // TODO Pass 1: Fill out symbol table
-    
+    /* Pass 1: Fill out symbol table */
+    char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1, *lArg2, *lArg3, *lArg4;
+    int lRet, pc;
+	int i = 0;
+    do {
+        lRet = readAndParse(lInfile, lLine, &lLabel, &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4);
+        if(lRet != DONE && lRet != EMPTY_LINE) {
+
+			/* Set Origin */
+			if (strcmp(lLine, ".orig") == 0) { pc = toNum(lArg1); }
+			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
+
+			/* Check if line is a label */
+			if (isOpcode(lLine) == -1 && lLine[0] != '.') {
+				/* Copy label and address to symbolTable */
+				symbolTable[i].label = lLabel;
+				symbolTable[i].address = 0;
+				printf(symbolTable);
+				i++;
+			}
+        }
+    } while(lRet != DONE);
     
     // TODO Pass 2: Parse and convert instructions to machine code
     

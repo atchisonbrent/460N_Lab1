@@ -330,9 +330,8 @@ int main(int argc, char* argv[]) {
 				else { exit(4); }			/* .ORIG appears more than once */
 			}
 			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
-
-			//printf(lLine);
-			//printf("\n");
+            
+            if (*lLabel != '\0' && isOpcode(lOpcode) == -1 && lOpcode[0] != '.') { exit(2); }
 
 			/* If valid opcode, produce binary */
 			if (isOpcode(lLine) == 1) {

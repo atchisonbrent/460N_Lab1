@@ -261,7 +261,7 @@ int main(int argc, char* argv[]) {
 			/* Set Origin */
 			if (strcmp(lLine, ".orig") == 0) {
 				if (origSet == 0) {
-					pc = toNum(lArg1);
+					pc = toNum(lArg1) - 2;
 					origSet = 1;
 				}
 				else { exit(4); }			/* .ORIG appears more than once */

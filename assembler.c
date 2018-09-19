@@ -387,10 +387,10 @@ int main(int argc, char* argv[]) {
 				else if (strcmp(lLine, "br") == 0) {
 					char str[17], imm[10];
 					strcpy(str, "0000111");
-					int address = 0, offset;
+					int address = 0;
 					for (int j = 0; j < MAX_SYMBOLS; j++)
 						if (strcmp(lArg1, symbolTable[j].label) == 0) { address = symbolTable[j].address; break; }
-					offset = address - pc;
+					int offset = address - pc;
 					int n = sprintf(imm, "%d", abs(toBinary(offset)));
 					int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
 					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */

@@ -168,6 +168,8 @@ int toBinary(int i) {
 char* toHex(char* bits) {
 	char result[7], hex[5];
 	strcpy(result, "0x");
+    if (bits[0] == '0' && bits[1] == '0' && bits[2] == '0' &&
+        bits[3] == '0') { strcat(result, "0"); }
 	int val = (int) strtol(bits, NULL, 2);
 	sprintf(hex, "%x", val);
 	strcat(result, hex);

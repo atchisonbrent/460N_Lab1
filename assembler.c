@@ -194,7 +194,7 @@ int isRegister(char* r) {
 
 
 /* Map Register to Binary Value */
-char* mapRegister(char* r) {
+const char* mapRegister(char* r) {
 	for (int i = 0; i < num_regs; i++)
 		if (strcmp(r, registers[i]) == 0)
 			return register_map[i];
@@ -279,11 +279,10 @@ int main(int argc, char* argv[]) {
 	/* Open Output File */
 	FILE * lOutfile;
 	lOutfile = fopen(oFileName, "w");
-	int linepointer = 0;
     
     /* Pass 1: Fill out symbol table */
     char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1, *lArg2, *lArg3, *lArg4;
-    int lRet, pc;
+    int lRet, pc = 0;
 	int origSet = 0, symTableIndex = 0;
     do {
         lRet = readAndParse(lInfile, lLine, &lLabel, &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4);
@@ -388,7 +387,7 @@ int main(int argc, char* argv[]) {
 				else if (strcmp(lLine, "br") == 0) {
 					char str[17], imm[10];
 					strcpy(str, "0000111");
-					int address, offset;
+					int address = 0, offset;
 					for (int j = 0; j < MAX_SYMBOLS; j++)
 						if (strcmp(lArg1, symbolTable[j].label) == 0) { address = symbolTable[j].address; break; }
 					offset = address - pc;

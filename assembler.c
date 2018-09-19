@@ -347,8 +347,8 @@ int main(int argc, char* argv[]) {
 						strcat(str, mapRegister(lArg3));
 					}
 					else {
-						char imm[6];
 						strcat(str, "1");
+						char imm[6];
 						int num = toNum(lArg3);
 						if (num > 15 || num < -16) { exit(3); }
 						int n = sprintf(imm, "%d", abs(toBinary(num)));
@@ -373,8 +373,8 @@ int main(int argc, char* argv[]) {
 						strcat(str, mapRegister(lArg3));
 					}
 					else {
-						char imm[6];
 						strcat(str, "1");
+						char imm[6];
 						int num = toNum(lArg3);
 						if (num > 15 || num < -16) { exit(3); }
 						int n = sprintf(imm, "%d", abs(toBinary(num)));
@@ -386,7 +386,17 @@ int main(int argc, char* argv[]) {
 					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "br") == 0) {
-
+					//char str[17];
+					//strcpy(str, "0000000");
+					//char imm[10];
+					//int num = toNum(lArg1);
+					//if (num > 255 || num < -256) { exit(3); }
+					//int n = sprintf(imm, "%d", abs(toBinary(num)));
+					//int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+					//for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					//strcat(str, imm);
+					//fputs(toHex(str), lOutfile);
+					//fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brn") == 0) {
 
@@ -410,7 +420,14 @@ int main(int argc, char* argv[]) {
 
 				}
 				else if (strcmp(lLine, "jmp") == 0) {
-
+					char str[17];
+					strcpy(str, "1100000");
+					/* Check if valid registers and set binary values if so */
+					if (isRegister(lArg1) == 1) { strcat(str, mapRegister(lArg1)); }
+					else { exit(4); }
+					strcat(str, "000000");
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "jsr") == 0) {
 

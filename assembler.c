@@ -376,7 +376,8 @@ int main(int argc, char* argv[]) {
 
 				}
 				else if (strcmp(lLine, "rti") == 0) {
-
+					fputs("0x8000", lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "shf") == 0) {
 

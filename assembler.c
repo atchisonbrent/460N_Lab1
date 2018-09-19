@@ -139,10 +139,33 @@ int toNum(char* pStr) {
 }
 
 
+/* Convert Decimal to Binary */
+int toBinary(int i) {
+	if (i == 0) { return 0; }
+	else { return (i % 2 + 10 * toBinary(i / 2)); }
+}
+
+
+/*
+ * Convert 16 Bits to Hex
+ * Returns result in form of "0xABCD"
+ */
+char* toHex(char* bits) {
+	char result[7], hex[5];
+	strcpy(result, "0x");
+	int val = (int) strtol(bits, NULL, 2);
+	sprintf(hex, "%x", val);
+	strcat(result, hex);
+	char *str = (char *)malloc(sizeof(char) * 3);
+	for (int i = 0; i < strlen(result) + 1; i++) { str[i] = result[i]; }	/* Convert to char* */
+	return str;
+}
+
+
 /* Check if Valid Opcode */
 int isOpcode(char* op) {
 	for (int i = 0; i < num_ops; i++)
-		if (strcmp(op, instructions[i]) == 0) { return 0; }
+		if (strcmp(op, instructions[i]) == 0) { return 1; }
     return -1;
 }
 
@@ -248,12 +271,16 @@ int main(int argc, char* argv[]) {
     /* Open Assembly File */
     FILE * lInfile;
     lInfile = fopen(iFileName, "r");
+
+	/* Open Output File */
+	FILE * lOutfile;
+	lOutfile = fopen(oFileName, "w");
+	int linepointer = 0;
     
     /* Pass 1: Fill out symbol table */
     char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1, *lArg2, *lArg3, *lArg4;
     int lRet, pc;
-	int origSet = 0;
-	int symTableIndex = 0;
+	int origSet = 0, symTableIndex = 0;
     do {
         lRet = readAndParse(lInfile, lLine, &lLabel, &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4);
         if(lRet != DONE && lRet != EMPTY_LINE) {
@@ -282,7 +309,117 @@ int main(int argc, char* argv[]) {
     } while(lRet != DONE);
     
     // TODO Pass 2: Parse and convert instructions to machine code
-    
+	lInfile = fopen(iFileName, "r");
+	pc = 0; origSet = 0; symTableIndex = 0;
+	do {
+		lRet = readAndParse(lInfile, lLine, &lLabel, &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4);
+		if (lRet != DONE && lRet != EMPTY_LINE) {
+
+			/* Set Origin */
+			if (strcmp(lLine, ".orig") == 0) {
+				if (origSet == 0) {
+					pc = toNum(lArg1) - 2;
+					origSet = 1;
+				}
+				else { exit(4); }			/* .ORIG appears more than once */
+			}
+			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
+
+			//printf(lLine);
+			//printf("\n");
+
+			/* If valid opcode, produce binary */
+			if (isOpcode(lLine) == 1) {
+				if (strcmp(lLine, "add") == 0) {
+					
+				}
+				else if (strcmp(lLine, "and") == 0) {
+
+				}
+				else if (strcmp(lLine, "br") == 0) {
+
+				}
+				else if (strcmp(lLine, "brn") == 0) {
+
+				}
+				else if (strcmp(lLine, "brz") == 0) {
+
+				}
+				else if (strcmp(lLine, "brp") == 0) {
+
+				}
+				else if (strcmp(lLine, "brnz") == 0) {
+
+				}
+				else if (strcmp(lLine, "brnp") == 0) {
+
+				}
+				else if (strcmp(lLine, "brzp") == 0) {
+
+				}
+				else if (strcmp(lLine, "brnzp") == 0) {
+
+				}
+				else if (strcmp(lLine, "jmp") == 0) {
+
+				}
+				else if (strcmp(lLine, "jsr") == 0) {
+
+				}
+				else if (strcmp(lLine, "ldb") == 0) {
+
+				}
+				else if (strcmp(lLine, "ldw") == 0) {
+
+				}
+				else if (strcmp(lLine, "lea") == 0) {
+
+				}
+				else if (strcmp(lLine, "rti") == 0) {
+
+				}
+				else if (strcmp(lLine, "shf") == 0) {
+
+				}
+				else if (strcmp(lLine, "stb") == 0) {
+
+				}
+				else if (strcmp(lLine, "stw") == 0) {
+
+				}
+				else if (strcmp(lLine, "trap") == 0) {
+					if (toNum(lArg1) != 37) { exit(3); }			/* Check for trap vector x25 */
+					char vector[8], str[17];
+					int bin = toBinary(toNum(lArg1));
+					int n = sprintf(vector, "%d", bin);				/* Binary -> string */
+					int fill = 8 - n;								/* Number of 0s needed to fill gap in vector */
+					strcpy(str, "11110000");
+					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					strcat(str, vector);
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
+				}
+				else if (strcmp(lLine, "xor") == 0) {
+
+				}
+				else if (strcmp(lLine, "nop") == 0) {
+					fputs("0x0000", lOutfile);
+					fputs("\n", lOutfile);
+				}
+				else if (strcmp(lLine, "halt") == 0) {
+					fputs("0xf025", lOutfile);
+					fputs("\n", lOutfile);
+				}
+				else {
+					printf("Congrats, you broke the program.");
+					exit(4);
+				}
+			}
+
+			/* Increment PC */
+			pc += 2;
+		}
+	} while (lRet != DONE);
     
     // TODO Write Output File
     

@@ -386,17 +386,18 @@ int main(int argc, char* argv[]) {
 					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "br") == 0) {
-					//char str[17];
-					//strcpy(str, "0000000");
-					//char imm[10];
-					//int num = toNum(lArg1);
-					//if (num > 255 || num < -256) { exit(3); }
-					//int n = sprintf(imm, "%d", abs(toBinary(num)));
-					//int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
-					//for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
-					//strcat(str, imm);
-					//fputs(toHex(str), lOutfile);
-					//fputs("\n", lOutfile);
+					char str[17], imm[10];
+					strcpy(str, "0000111");
+					int address, offset;
+					for (int j = 0; j < MAX_SYMBOLS; j++)
+						if (strcmp(lArg1, symbolTable[j].label) == 0) { address = symbolTable[j].address; break; }
+					offset = address - pc;
+					int n = sprintf(imm, "%d", abs(toBinary(offset)));
+					int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					strcat(str, imm);
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brn") == 0) {
 

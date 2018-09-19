@@ -422,7 +422,7 @@ int main(int argc, char* argv[]) {
 				else if (strcmp(lLine, "jmp") == 0) {
 					char str[17];
 					strcpy(str, "1100000");
-					/* Check if valid registers and set binary values if so */
+					/* Check if valid register and set binary values if so */
 					if (isRegister(lArg1) == 1) { strcat(str, mapRegister(lArg1)); }
 					else { exit(4); }
 					strcat(str, "000000");
@@ -433,7 +433,23 @@ int main(int argc, char* argv[]) {
 
 				}
 				else if (strcmp(lLine, "ldb") == 0) {
-
+					char str[17];
+					strcpy(str, "0010");
+					/* Check if valid registers and set binary values if so */
+					if (isRegister(lArg1) == 1 && isRegister(lArg2) == 1) {
+						strcat(str, mapRegister(lArg1));
+						strcat(str, mapRegister(lArg2));
+					}
+					else { exit(4); }
+					char imm[7];
+					int num = toNum(lArg3);
+					if (num > 30 || num < -31) { exit(3); }
+					int n = sprintf(imm, "%d", abs(toBinary(num)));
+					int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
+					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					strcat(str, imm);
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "ldw") == 0) {
 

@@ -421,8 +421,5 @@ int main(int argc, char* argv[]) {
 		}
 	} while (lRet != DONE);
     
-    // TODO Write Output File
-    
-    
     return 0;
 }

@@ -26,8 +26,8 @@ enum {
 
 /* Symbol Table Struct */
 typedef struct {
+	char* label;
     int address;
-    char* label;
 } TableEntry;
 TableEntry symbolTable[MAX_SYMBOLS];
 
@@ -252,23 +252,31 @@ int main(int argc, char* argv[]) {
     /* Pass 1: Fill out symbol table */
     char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1, *lArg2, *lArg3, *lArg4;
     int lRet, pc;
-	int i = 0;
+	int origSet = 0;
+	int symTableIndex = 0;
     do {
         lRet = readAndParse(lInfile, lLine, &lLabel, &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4);
         if(lRet != DONE && lRet != EMPTY_LINE) {
 
 			/* Set Origin */
-			if (strcmp(lLine, ".orig") == 0) { pc = toNum(lArg1); }
+			if (strcmp(lLine, ".orig") == 0) {
+				if (origSet == 0) {
+					pc = toNum(lArg1);
+					origSet = 1;
+				}
+				else { exit(4); }			/* .ORIG appears more than once */
 			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
 
-			/* Check if line is a label */
+			/* Check if Label */
 			if (isOpcode(lLine) == -1 && lLine[0] != '.') {
 				/* Copy label and address to symbolTable */
-				symbolTable[i].label = lLabel;
-				symbolTable[i].address = 0;
-				printf(symbolTable);
-				i++;
+				symbolTable[symTableIndex].label = lLabel;
+				symbolTable[symTableIndex].address = pc;
+				symTableIndex++;
 			}
+
+			/* Increment PC */
+			pc += 2;
         }
     } while(lRet != DONE);
     

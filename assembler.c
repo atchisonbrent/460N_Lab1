@@ -404,25 +404,130 @@ int main(int argc, char* argv[]) {
 					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brn") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000100");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brz") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000010");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brp") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000001");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brnz") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000110");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brnp") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000101");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brzp") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000011");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "brnzp") == 0) {
-
+                    char str[17], imm[10];
+                    strcpy(str, "0000111");
+                    int address = 0;
+                    for (int j = 0; j < MAX_SYMBOLS; j++) {
+                        if (strcmp(lArg1, symbolTable[j].label) == 0) {
+                            address = symbolTable[j].address;
+                            break;
+                        }
+                    }
+                    int offset = (address - pc - 2) / 2;
+                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
+                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
+                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+                    strcat(str, imm);
+                    fputs(toHex(str), lOutfile);
+                    fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "jmp") == 0) {
 					char str[17];

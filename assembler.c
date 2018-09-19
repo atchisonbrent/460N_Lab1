@@ -331,6 +331,7 @@ int main(int argc, char* argv[]) {
 				if (origSet == 0) {
 					pc = toNum(lArg1) - 2;
 					origSet = 1;
+                    continue;
 				}
 				else { exit(4); }			/* .ORIG appears more than once */
 			}
@@ -340,8 +341,8 @@ int main(int argc, char* argv[]) {
             if (*lLabel != '\0' && isOpcode(lOpcode) == -1 && lOpcode[0] != '.') { exit(2); }
 
 			/* If valid opcode, produce binary */
-			if (isOpcode(lLine) == 1) {
-				if (strcmp(lLine, "add") == 0) {
+			if (isOpcode(lOpcode) == 1) {
+				if (strcmp(lOpcode, "add") == 0) {
 					char str[17];
 					strcpy(str, "0001");
 					/* Check if valid registers and set binary values if so */
@@ -366,7 +367,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "and") == 0) {
+				else if (strcmp(lOpcode, "and") == 0) {
 					char str[17];
 					strcpy(str, "0101");
 					/* Check if valid registers and set binary values if so */
@@ -392,7 +393,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "br") == 0) {
+				else if (strcmp(lOpcode, "br") == 0) {
 					char str[17], imm[10];
 					strcpy(str, "0000111");
 					int address = 0;
@@ -411,7 +412,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brn") == 0) {
+				else if (strcmp(lOpcode, "brn") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000100");
                     int address = 0;
@@ -430,7 +431,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brz") == 0) {
+				else if (strcmp(lOpcode, "brz") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000010");
                     int address = 0;
@@ -449,7 +450,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brp") == 0) {
+				else if (strcmp(lOpcode, "brp") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000001");
                     int address = 0;
@@ -468,7 +469,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brnz") == 0) {
+				else if (strcmp(lOpcode, "brnz") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000110");
                     int address = 0;
@@ -487,7 +488,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brnp") == 0) {
+				else if (strcmp(lOpcode, "brnp") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000101");
                     int address = 0;
@@ -506,7 +507,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brzp") == 0) {
+				else if (strcmp(lOpcode, "brzp") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000011");
                     int address = 0;
@@ -525,7 +526,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "brnzp") == 0) {
+				else if (strcmp(lOpcode, "brnzp") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "0000111");
                     int address = 0;
@@ -544,7 +545,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-                else if (strcmp(lLine, "jmp") == 0) {
+                else if (strcmp(lOpcode, "jmp") == 0) {
                     char str[17];
                     strcpy(str, "1100000");
                     /* Check if valid register and set binary values if so */
@@ -554,11 +555,11 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "ret") == 0) {
+                else if (strcmp(lOpcode, "ret") == 0) {
                     fputs("0xc1c0", lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "jsr") == 0) {
+                else if (strcmp(lOpcode, "jsr") == 0) {
                     char str[17], imm[12];
                     strcpy(str, "01001");
                     int address = 0;
@@ -577,7 +578,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "jsrr") == 0) {
+                else if (strcmp(lOpcode, "jsrr") == 0) {
                     char str[17];
                     strcpy(str, "0100000");
                     if (isRegister(lArg1) == 1) { strcat(str, mapRegister(lArg1)); }
@@ -585,7 +586,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-				else if (strcmp(lLine, "ldb") == 0) {
+				else if (strcmp(lOpcode, "ldb") == 0) {
 					char str[17];
 					strcpy(str, "0010");
 					/* Check if valid registers and set binary values if so */
@@ -604,7 +605,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "ldw") == 0) {
+				else if (strcmp(lOpcode, "ldw") == 0) {
 					char str[17];
 					strcpy(str, "0110");
 					/* Check if valid registers and set binary values if so */
@@ -623,7 +624,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "lea") == 0) {
+				else if (strcmp(lOpcode, "lea") == 0) {
                     char str[17], imm[10];
                     strcpy(str, "1110");
                     
@@ -649,11 +650,11 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "rti") == 0) {
+				else if (strcmp(lOpcode, "rti") == 0) {
 					fputs("0x8000", lOutfile);
 					fputs("\n", lOutfile);
 				}
-                else if (strcmp(lLine, "lshf") == 0) {
+                else if (strcmp(lOpcode, "lshf") == 0) {
                     char str[17];
                     strcpy(str, "1101");
                     /* Check if valid registers and set binary values if so */
@@ -673,7 +674,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "rshfl") == 0) {
+                else if (strcmp(lOpcode, "rshfl") == 0) {
                     char str[17];
                     strcpy(str, "1101");
                     /* Check if valid registers and set binary values if so */
@@ -693,7 +694,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "rshfa") == 0) {
+                else if (strcmp(lOpcode, "rshfa") == 0) {
                     char str[17];
                     strcpy(str, "1101");
                     /* Check if valid registers and set binary values if so */
@@ -713,7 +714,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-				else if (strcmp(lLine, "stb") == 0) {
+				else if (strcmp(lOpcode, "stb") == 0) {
 					char str[17];
 					strcpy(str, "0011");
 					/* Check if valid registers and set binary values if so */
@@ -732,7 +733,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "stw") == 0) {
+				else if (strcmp(lOpcode, "stw") == 0) {
 					char str[17];
 					strcpy(str, "0111");
 					/* Check if valid registers and set binary values if so */
@@ -751,7 +752,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "trap") == 0) {
+				else if (strcmp(lOpcode, "trap") == 0) {
 					if (toNum(lArg1) != 37) { exit(3); }			/* Check for trap vector x25 */
 					char vector[8], str[17];
 					int bin = toBinary(toNum(lArg1));
@@ -763,7 +764,7 @@ int main(int argc, char* argv[]) {
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
 				}
-                else if (strcmp(lLine, "xor") == 0) {
+                else if (strcmp(lOpcode, "xor") == 0) {
                     char str[17];
                     strcpy(str, "1001");
                     /* Check if valid registers and set binary values if so */
@@ -789,7 +790,7 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-                else if (strcmp(lLine, "not") == 0) {
+                else if (strcmp(lOpcode, "not") == 0) {
                     char str[17];
                     strcpy(str, "1001");
                     /* Check if valid registers and set binary values if so */
@@ -802,11 +803,11 @@ int main(int argc, char* argv[]) {
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }
-				else if (strcmp(lLine, "nop") == 0) {
+				else if (strcmp(lOpcode, "nop") == 0) {
 					fputs("0x0000", lOutfile);
 					fputs("\n", lOutfile);
 				}
-				else if (strcmp(lLine, "halt") == 0) {
+				else if (strcmp(lOpcode, "halt") == 0) {
 					fputs("0xf025", lOutfile);
 					fputs("\n", lOutfile);
 				}

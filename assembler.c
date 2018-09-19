@@ -282,6 +282,7 @@ int main(int argc, char* argv[]) {
     
     /* Pass 1: Fill out symbol table */
     char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1, *lArg2, *lArg3, *lArg4;
+	char labelArray[MAX_SYMBOLS][MAX_LABEL_LEN];
     int lRet, pc = 0;
 	int origSet = 0, symTableIndex = 0;
     do {
@@ -301,7 +302,7 @@ int main(int argc, char* argv[]) {
 			/* Check if Label */
 			if (isOpcode(lLine) == -1 && lLine[0] != '.') {
 				/* Copy label and address to symbolTable */
-				symbolTable[symTableIndex].label = lLabel;
+				symbolTable[symTableIndex].label = strcpy(labelArray[symTableIndex], lLabel);
 				symbolTable[symTableIndex].address = pc;
 				symTableIndex++;
 			}

@@ -265,6 +265,7 @@ int main(int argc, char* argv[]) {
 					origSet = 1;
 				}
 				else { exit(4); }			/* .ORIG appears more than once */
+			}
 			if (pc % 2 != 0) { exit(3); }	/* Invalid constant if pc % 2 is odd */
 
 			/* Check if Label */

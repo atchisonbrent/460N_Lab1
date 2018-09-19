@@ -360,7 +360,30 @@ int main(int argc, char* argv[]) {
 					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "and") == 0) {
-
+					char str[17];
+					strcpy(str, "0101");
+					/* Check if valid registers and set binary values if so */
+					if (isRegister(lArg1) == 1 && isRegister(lArg2) == 1) {
+						strcat(str, mapRegister(lArg1));
+						strcat(str, mapRegister(lArg2));
+					}
+					else { exit(4); }
+					if (isRegister(lArg3) == 1) {
+						strcat(str, "000");
+						strcat(str, mapRegister(lArg3));
+					}
+					else {
+						char imm[6];
+						strcat(str, "1");
+						int num = toNum(lArg3);
+						if (num > 15 || num < -16) { exit(3); }
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						strcat(str, imm);
+					}
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "br") == 0) {
 

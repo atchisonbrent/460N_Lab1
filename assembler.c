@@ -59,6 +59,23 @@ const char * instructions[23] = {
 };
 
 
+/* List of Valid Registers */
+int num_regs = 8;
+const char * registers[8] = {
+	"r0", "r1", "r2",
+	"r3", "r4", "r5",
+	"r6", "r7"
+};
+
+
+/* List of Register Bit Mappings */
+const char * register_map[8] = {
+	"000", "001", "010",
+	"011", "100", "101",
+	"110", "111"
+};
+
+
 /* File Handler */
 int handle_files(int argc, char* argv[]) {
     
@@ -146,10 +163,8 @@ int toBinary(int i) {
 }
 
 
-/*
- * Convert 16 Bits to Hex
- * Returns result in form of "0xABCD"
- */
+/* Convert 16 Bits to Hex
+ * Returns result in form of "0xABCD" */
 char* toHex(char* bits) {
 	char result[7], hex[5];
 	strcpy(result, "0x");
@@ -167,6 +182,23 @@ int isOpcode(char* op) {
 	for (int i = 0; i < num_ops; i++)
 		if (strcmp(op, instructions[i]) == 0) { return 1; }
     return -1;
+}
+
+
+/* Check if Valid Register */
+int isRegister(char* r) {
+	for (int i = 0; i < num_regs; i++)
+		if (strcmp(r, registers[i]) == 0) { return 1; }
+	return -1;
+}
+
+
+/* Map Register to Binary Value */
+char* mapRegister(char* r) {
+	for (int i = 0; i < num_regs; i++)
+		if (strcmp(r, registers[i]) == 0)
+			return register_map[i];
+	return register_map[0];
 }
 
 
@@ -222,34 +254,6 @@ int readAndParse(FILE * pInfile, char * pLine, char ** pLabel, char ** pOpcode,
     
     return( OK );
 }
-
-/* Example Usage of Read and Parse */
-//func() {
-//    char lLine[MAX_LINE_LENGTH + 1], *lLabel, *lOpcode, *lArg1,
-//    *lArg2, *lArg3, *lArg4;
-//
-//    int lRet;
-//
-//    FILE * lInfile;
-//
-//    lInfile = fopen( "data.in", "r" );    /* open the input file */
-//
-//    do {
-//        lRet = readAndParse( lInfile, lLine, &lLabel,
-//                            &lOpcode, &lArg1, &lArg2, &lArg3, &lArg4 );
-//        if( lRet != DONE && lRet != EMPTY_LINE ) {
-//            ...
-//        }
-//    } while( lRet != DONE );
-//}
-
-/* Example Output Code */
-//FILE * pOutfile;
-//pOutfile = fopen( "data.out", "w" );
-//
-//...
-//
-//fprintf( pOutfile, "0x%.4X\n", lInstr );    /* where lInstr is declared as an int */
 
 
 /* Main Method */
@@ -331,7 +335,29 @@ int main(int argc, char* argv[]) {
 			/* If valid opcode, produce binary */
 			if (isOpcode(lLine) == 1) {
 				if (strcmp(lLine, "add") == 0) {
-					
+					char str[17];
+					strcpy(str, "0001");
+					/* Check if valid registers and set binary values if so */
+					if (isRegister(lArg1) == 1 && isRegister(lArg2) == 1) {
+						strcat(str, mapRegister(lArg1));
+						strcat(str, mapRegister(lArg2));
+					} else { exit(4); }
+					if (isRegister(lArg3) == 1) {
+						strcat(str, "000");
+						strcat(str, mapRegister(lArg3));
+					}
+					else {
+						char imm[6];
+						strcat(str, "1");
+						int num = toNum(lArg3);
+						if (num > 15 || num < -16) { exit(3); }
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						strcat(str, imm);
+					}
+					fputs(toHex(str), lOutfile);
+					fputs("\n", lOutfile);
 				}
 				else if (strcmp(lLine, "and") == 0) {
 

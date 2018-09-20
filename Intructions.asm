@@ -2,7 +2,7 @@
 LOL    ADD r1, r2, r3
 ABD    ADD r6, r7, #-4
 ABC    AND r1, r2, r6
-ASM    AND r2, r5, #-xF
+ASM    AND r2, r5, x-F
     BR ASM
     BRnzp LOL
     BRnz ABD
@@ -16,7 +16,7 @@ ASM    AND r2, r5, #-xF
     JSRR r5
     LDB r7, r6, #-10
     LDW r7, r6, #10
-    LEA r3, #100
+    LEA r3, LOL
     NOT r1, r2
     RET
     RTI

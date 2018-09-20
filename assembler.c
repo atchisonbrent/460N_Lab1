@@ -583,6 +583,7 @@ int main(int argc, char* argv[]) {
                     strcpy(str, "0100000");
                     if (isRegister(lArg1) == 1) { strcat(str, mapRegister(lArg1)); }
                     else { exit(4); }
+					strcat(str, "000000");
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
                 }

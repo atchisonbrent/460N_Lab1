@@ -365,7 +365,16 @@ int main(int argc, char* argv[]) {
 							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 						}
 						else {	/* Negative Offset */
-							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int n = sprintf(imm, "%d", toBinary(num));
+								/* Ones Complement */
+							for (int j = 0; j < strlen(imm); j++) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; }
+							}	/* Twos Complement */
+							for (int j = strlen(imm) - 1; j >= 0; j--) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; break; }
+							}
 							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
 							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 						}
@@ -398,7 +407,16 @@ int main(int argc, char* argv[]) {
 							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 						}
 						else {	/* Negative Offset */
-							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int n = sprintf(imm, "%d", toBinary(num));
+								/* Ones Complement */
+							for (int j = 0; j < strlen(imm); j++) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; }
+							}	/* Twos Complement */
+							for (int j = strlen(imm) - 1; j >= 0; j--) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; break; }
+							}
 							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
 							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 						}
@@ -425,7 +443,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -451,7 +478,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -477,7 +513,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -503,7 +548,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -529,7 +583,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -555,7 +618,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -581,7 +653,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -607,7 +688,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -647,7 +737,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 11 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -682,7 +781,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -708,7 +816,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -741,7 +858,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int n = sprintf(imm, "%d", toBinary(offset));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -772,7 +898,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -799,7 +934,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+						/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -826,7 +970,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -852,7 +1005,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -878,7 +1040,16 @@ int main(int argc, char* argv[]) {
 						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 					}
 					else {	/* Negative Offset */
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int n = sprintf(imm, "%d", toBinary(num));
+							/* Ones Complement */
+						for (int j = 0; j < strlen(imm); j++) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; }
+						}	/* Twos Complement */
+						for (int j = strlen(imm) - 1; j >= 0; j--) {
+							if (imm[j] == '1') { imm[j] = '0'; }
+							else { imm[j] = '1'; break; }
+						}
 						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
 						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 					}
@@ -922,7 +1093,16 @@ int main(int argc, char* argv[]) {
 							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
 						}
 						else {	/* Negative Offset */
-							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int n = sprintf(imm, "%d", toBinary(num));
+								/* Ones Complement */
+							for (int j = 0; j < strlen(imm); j++) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; }
+							}	/* Twos Complement */
+							for (int j = strlen(imm) - 1; j >= 0; j--) {
+								if (imm[j] == '1') { imm[j] = '0'; }
+								else { imm[j] = '1'; break; }
+							}
 							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
 							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
 						}

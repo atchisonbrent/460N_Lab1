@@ -359,9 +359,16 @@ int main(int argc, char* argv[]) {
 						char imm[6];
 						int num = toNum(lArg3);
 						if (num > 15 || num < -16) { exit(3); }
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
-						int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
-						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						if (num >= 0) {
+							int n = sprintf(imm, "%d", toBinary(num));
+							int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						}
+						else {	/* Negative Offset */
+							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+						}
 						strcat(str, imm);
 					}
 					fputs(toHex(str), lOutfile);
@@ -385,9 +392,16 @@ int main(int argc, char* argv[]) {
 						char imm[6];
 						int num = toNum(lArg3);
 						if (num > 15 || num < -16) { exit(3); }
-						int n = sprintf(imm, "%d", abs(toBinary(num)));
-						int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
-						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						if (num >= 0) {
+							int n = sprintf(imm, "%d", toBinary(num));
+							int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						}
+						else {	/* Negative Offset */
+							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+						}
 						strcat(str, imm);
 					}
 					fputs(toHex(str), lOutfile);
@@ -405,9 +419,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
 					int offset = (address - pc - 2) / 2;
-					int n = sprintf(imm, "%d", abs(toBinary(offset)));
-					int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
-					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
 					strcat(str, imm);
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
@@ -424,9 +445,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -443,9 +471,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -462,9 +497,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -481,9 +523,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -500,9 +549,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -519,9 +575,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -538,9 +601,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -571,9 +641,16 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 11 - n;                              /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 11 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 11 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -599,9 +676,16 @@ int main(int argc, char* argv[]) {
 					char imm[7];
 					int num = toNum(lArg3);
 					if (num > 30 || num < -31) { exit(3); }
-					int n = sprintf(imm, "%d", abs(toBinary(num)));
-					int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
-					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
 					strcat(str, imm);
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
@@ -618,9 +702,16 @@ int main(int argc, char* argv[]) {
 					char imm[7];
 					int num = toNum(lArg3);
 					if (num > 30 || num < -31) { exit(3); }
-					int n = sprintf(imm, "%d", abs(toBinary(num)));
-					int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
-					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
 					strcat(str, imm);
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
@@ -644,9 +735,16 @@ int main(int argc, char* argv[]) {
                     }
                     
                     int offset = (address - pc - 2) / 2;
-                    int n = sprintf(imm, "%d", abs(toBinary(offset)));
-                    int fill = 9 - n;                               /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }  /* Fill in excess 0s */
+					if (offset >= 0) {
+						int n = sprintf(imm, "%d", toBinary(offset));
+						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(offset)));
+						int fill = 9 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -668,9 +766,16 @@ int main(int argc, char* argv[]) {
                     char imm[5];
                     int num = toNum(lArg3);
                     if (num > 7 || num < -8) { exit(3); }
-                    int n = sprintf(imm, "%d", abs(toBinary(num)));
-                    int fill = 4 - n;                                /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }    /* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 4 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -688,9 +793,16 @@ int main(int argc, char* argv[]) {
                     char imm[5];
                     int num = toNum(lArg3);
                     if (num > 7 || num < -8) { exit(3); }
-                    int n = sprintf(imm, "%d", abs(toBinary(num)));
-                    int fill = 4 - n;                                /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }    /* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 4 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -708,9 +820,16 @@ int main(int argc, char* argv[]) {
                     char imm[5];
                     int num = toNum(lArg3);
                     if (num > 7 || num < -8) { exit(3); }
-                    int n = sprintf(imm, "%d", abs(toBinary(num)));
-                    int fill = 4 - n;                                /* Number of 0s needed to fill gap in vector */
-                    for (; fill > 0; fill--) { strcat(str, "0"); }    /* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 4 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 4 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
                     strcat(str, imm);
                     fputs(toHex(str), lOutfile);
                     fputs("\n", lOutfile);
@@ -727,9 +846,16 @@ int main(int argc, char* argv[]) {
 					char imm[7];
 					int num = toNum(lArg3);
 					if (num > 30 || num < -31) { exit(3); }
-					int n = sprintf(imm, "%d", abs(toBinary(num)));
-					int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
-					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
 					strcat(str, imm);
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
@@ -746,9 +872,16 @@ int main(int argc, char* argv[]) {
 					char imm[7];
 					int num = toNum(lArg3);
 					if (num > 30 || num < -31) { exit(3); }
-					int n = sprintf(imm, "%d", abs(toBinary(num)));
-					int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
-					for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					if (num >= 0) {
+						int n = sprintf(imm, "%d", toBinary(num));
+						int fill = 6 - n;								/* Number of 0s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+					}
+					else {	/* Negative Offset */
+						int n = sprintf(imm, "%d", abs(toBinary(num)));
+						int fill = 6 - n;								/* Number of 1s needed to fill gap in vector */
+						for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+					}
 					strcat(str, imm);
 					fputs(toHex(str), lOutfile);
 					fputs("\n", lOutfile);
@@ -783,9 +916,16 @@ int main(int argc, char* argv[]) {
                         char imm[6];
                         int num = toNum(lArg3);
                         if (num > 15 || num < -16) { exit(3); }
-                        int n = sprintf(imm, "%d", abs(toBinary(num)));
-                        int fill = 5 - n;                                /* Number of 0s needed to fill gap in vector */
-                        for (; fill > 0; fill--) { strcat(str, "0"); }    /* Fill in excess 0s */
+						if (num >= 0) {
+							int n = sprintf(imm, "%d", toBinary(num));
+							int fill = 5 - n;								/* Number of 0s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "0"); }	/* Fill in excess 0s */
+						}
+						else {	/* Negative Offset */
+							int n = sprintf(imm, "%d", abs(toBinary(num)));
+							int fill = 5 - n;								/* Number of 1s needed to fill gap in vector */
+							for (; fill > 0; fill--) { strcat(str, "1"); }	/* Fill in excess 1s */
+						}
                         strcat(str, imm);
                     }
                     fputs(toHex(str), lOutfile);

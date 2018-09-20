@@ -27,7 +27,7 @@ ASM    AND r2, r5, x-F
     STW r6, r7, #5
     TRAP x25
     XOR r2, r3, r4
-    XOR r4, r5, r6
+    XOR r4, r5, #8
 .END
-    
+    XOR r4, r5, #8
    

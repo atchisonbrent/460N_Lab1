@@ -319,7 +319,7 @@ int main(int argc, char* argv[]) {
         }
     } while(lRet != DONE);
     
-    // TODO Pass 2: Parse and convert instructions to machine code
+    // Pass 2: Parse and convert instructions to machine code
 	lInfile = fopen(iFileName, "r");
 	pc = 0; origSet = 0; symTableIndex = 0;
 	do {
@@ -339,6 +339,8 @@ int main(int argc, char* argv[]) {
             
             /* Check if Invalid Opcode */
             if (*lLabel != '\0' && isOpcode(lOpcode) == -1 && lOpcode[0] != '.') { exit(2); }
+
+			if (strcmp(lOpcode, ".end") == 0) { break; }
 
 			/* If valid opcode, produce binary */
 			if (isOpcode(lOpcode) == 1) {

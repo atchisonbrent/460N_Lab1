@@ -1,7 +1,10 @@
+;comment
 .ORIG x4000
+;comment
+;comment
 LOL    ADD r1, r2, r3
 ABD    ADD r6, r7, #-4
-ABC    AND r1, r2, r6
+ABC    AND r1, r2, r6	;comment
 ASM    AND r2, r5, x-F
     BR ASM
     BRnzp LOL
@@ -14,7 +17,7 @@ ASM    AND r2, r5, x-F
     JMP r2
     JSR ABD
     JSRR r5
-    LDB r7, r6, #-10
+    LDB r7, r6, #-10	;comment
     LDW r7, r6, #10
     LEA r3, LOL
     NOT r1, r2
@@ -27,7 +30,7 @@ ASM    AND r2, r5, x-F
     STW r6, r7, #5
     TRAP x25
     XOR r2, r3, r4
-    XOR r4, r5, #8
+    XOR r4, r5, #8	;comment
 .END
     XOR r4, r5, #8
    

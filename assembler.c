@@ -438,7 +438,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-					int offset = (address - pc - 2) / 2;
+					int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -473,7 +473,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -508,7 +508,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -543,7 +543,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -578,7 +578,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -613,7 +613,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -648,7 +648,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -683,7 +683,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
@@ -732,7 +732,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 11 - n;								/* Number of 0s needed to fill gap in vector */
@@ -853,7 +853,7 @@ int main(int argc, char* argv[]) {
                         if (j == MAX_SYMBOLS - 1) { exit(1); }
                     }
                     
-                    int offset = (address - pc - 2) / 2;
+                    int offset = (address - pc) / 2;
 					if (offset >= 0) {
 						int n = sprintf(imm, "%d", toBinary(offset));
 						int fill = 9 - n;								/* Number of 0s needed to fill gap in vector */
